@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer-Desk</title>
+    <style>
+        body {
+            background-image: url('/static/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffcc00;
+        }
+        h2 {
+            color: #ffcc00;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        button {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #e6b800;
+        }
+        .result {
+            background-color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Farmer-Desk</h1>
+        <div class="nav-buttons">
+            <a href="#yield-estimation" style="text-decoration: none;">
+                <button>Crop Yield Estimation</button>
+            </a>
+            <a href="#crop-recommendation" style="text-decoration: none;">
+                <button>Crop Recommendation</button>
+            </a>
+        </div>
+
+        <div id="yield-estimation">
+            <h2>Crop Yield Estimation</h2>
+            <form method="post">
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year">
+
+                <label for="rainfall">Average Rainfall (mm_per_year):</label>
+                <input type="text" id="rainfall" name="rainfall">
+
+                <label for="pesticides">Pesticides Tonnes:</label>
+                <input type="text" id="pesticides" name="pesticides">
+
+                <label for="temp">Average Temperature:</label>
+                <input type="text" id="temp" name="temp">
+
+                <label for="area">Area (Country):</label>
+                <input type="text" id="area" name="area">
+
+                <label for="item">Item or Crop:</label>
+                <input type="text" id="item" name="item">
+
+                <button type="submit" name="predict_yield">Predict Yield</button>
+            </form>
+        </div>
+
+        <div id="crop-recommendation">
+            <h2>Crop Recommendation</h2>
+            <form method="post">
+                <label for="N">Nitrogen (N):</label>
+                <input type="text" id="N" name="N">
+
+                <label for="P">Phosphorous (P):</label>
+                <input type="text" id="P" name="P">
+
+                <label for="K">Potassium (K):</label>
+                <input type="text" id="K" name="K">
+
+                <label for="temperature">Temperature (°C):</label>
+                <input type="text" id="temperature" name="temperature">
+
+                <label for="humidity">Humidity (%):</label>
+                <input type="text" id="humidity" name="humidity">
+
+                <label for="ph">pH Value:</label>
+                <input type="text" id="ph" name="ph">
+
+                <label for="rainfall">Rainfall (mm):</label>
+                <input type="text" id="rainfall" name="rainfall">
+
+                <button type="submit" name="recommend_crop">Recommend Crop</button>
+            </form>
+        </div>
+
+        {% if yield_result %}
+            <div class="result">
+                <h3>Result:</h3>
+                <p>{{ yield_result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
